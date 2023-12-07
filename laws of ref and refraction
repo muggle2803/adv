@@ -1,0 +1,61 @@
+// Experiment - 7 (i) To verify law of Reflection
+
+a = input("a  = ")
+b = input("b  = ")
+c = input("c  = ")
+d = input("d  = ")
+N = input("N  = ")
+h = (c - a)/ N
+x = a:h:c
+function Distance = D(x)
+    Distance = sqrt((x-a)^2 + b^2) + sqrt((c-x)^2 + d^2)
+endfunction
+plot2d(x, D(a:h:c))
+[m,n] = min(D(x))
+disp("Minimum value", m)
+disp("Minima", n)
+x0 = x(n)
+sini = (x0 -a)/sqrt((x0 -a)^2 + b^2)
+sinr = (c - x0)/ sqrt((c - x0)^2 + d^2)
+disp("sin i = ",sini)
+disp("sin r =", sinr)
+disp(" Sin i = Sin r. Hence, law of reflection is verified.")
+x_reflection = [a, x0, c];
+y_reflection = [0, D(x0, a, b, c, d), 0];
+
+plot(x_reflection, y_reflection, style = 2, color = 2)
+xlabel("x")
+ylabel("Distance")
+title("Shortest Path of Reflection")
+/*a = 1;  b= 2; c= 6;  d = 4; N = 200 
+h = (c - a)/ N*/
+
+
+// Experiment - 7(ii) To verify law of Refraction
+clear;clc;clf
+a = input("a  = ")
+b = input("b  = ")
+c = input("c  = ")
+d = input("d  = ")
+N = input("N  = ")
+h = (c - a)/ N
+v = input("v1/v2 = ")
+x = a:h:c
+function Distance = D(x)
+    Distance = sqrt((x-a)^2 + b^2) + v*sqrt((c-x)^2 + d^2)
+endfunction
+plot2d(x, D(a:h:c))
+[m,n] = min(D(x))
+disp("Minimum value", m)
+disp("Minima", n)
+x0 = x(n);
+sini = (x0 -a)/sqrt((x0 -a)^2 + b^2)
+sinr = (c - x0)/ sqrt((c - x0)^2 + d^2)
+disp("sin i = ",sini)
+disp("sin r =", sinr)
+disp("sin i / sin r", sini/sinr)
+disp(" Sin i/Sin r = v1/v2 . Hence, law of refraction is verified.")
+
+/*a = 1;  b= 2; c= 6;  d = 4; N = 200 
+v = 1.5//Ratio of velocities
+h = (c - a)/ N*/
