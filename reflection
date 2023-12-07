@@ -1,0 +1,35 @@
+clear;clc
+p=[-2;2;4;-2]
+q=[1;4;2;1]
+a1=[1 0;0 -1] //reflection about x axis
+b=[p,q]
+c=b*a1
+X=(c(:,1))'
+Y=(c(:,2))'
+subplot(2,2,1)
+plot2d(X,Y,4)
+plot2d(p,q,5)
+
+a2=[-1 0;0 1] //reflection about y axis
+c2=b*a2
+X2=(c2(:,1))'
+Y2=(c2(:,2))'
+subplot(2,2,2)
+plot2d(p,q,5)
+plot2d(X2,Y2,4)
+
+a3=[0 1;1 0] //reflection about y=x line
+c3=b*a3
+X3=(c3(:,1))'
+Y3=(c3(:,2))'
+subplot(2,2,3)
+plot2d(p,q,5)
+plot2d(X3,Y3,4)
+
+a4=[-1 0;0 -1] //reflection about origin
+c4=b*a4
+X4=(c4(:,1))'
+Y4=(c4(:,2))'
+subplot(2,2,4)
+plot2d(p,q,5)
+plot2d(X4,Y4,4)
