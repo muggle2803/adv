@@ -1,20 +1,30 @@
-clear();clc;clf
-x=[1 6]
-y=[2 -4]
-rmin=1
-rmax=6
+clc;clear();clf
+x=[1,6]
+y=[2,4]
 n=100
+rmin=1;rmax=6
 r=linspace(rmin,rmax,n)
-t=zeros(1,n)
+D=zeros(1,n)
 for i=1:n
-    t(i)=sqrt((r(i)-x(1))^2+y(1)^2)+sqrt((r(i)-x(2))^2+y(2)^2)
+    D(i)=sqrt((r(i)-x(1))^2+y(1)^2)+sqrt((r(i)-x(2))^2+y(2)^2)
 end
-[p,q]=min(t)
-disp("t="+string(p))
-disp("x="+string(r(q)))
-plot2d(r,t)
-xlabel("r")
-ylabel("t")
-sini=(r(q)-x(1))/(sqrt(y(1)^2+(r(q)-x(1))^2))
-sinr=(x(2)-r(q))/(sqrt(y(2)^2+((r(i)-x(1))^2)))
-disp("sini/sinr="+string(sini/sinr))
+[p,q]=min(D)
+disp('S = '+string(p))
+disp('x = '+string(r(q)))
+plot(r,D)
+xlabel('r')
+ylabel('S')
+xgrid(1,1,9)
+rdi=atan((r(q)-x(1))/y(1))
+ani=rdi*180/%pi
+rdf=atan((x(2)-r(q))/y(2))
+anf=rdf*180/%pi
+disp(' Angle of incidence = '+string(ani))
+disp(' Angle of reflection = '+string(anf))
+show_window(1)
+A=[1,2];O=[r(q),0];C=[6,4]
+z=[A' O']
+z1=[O' C']
+plot2d(z(1,:),z(2,:))
+plot2d(z1(1,:),z1(2,:))
+xgrid(1,1,9)
