@@ -1,0 +1,56 @@
+clear;clc;clf
+
+h = 1973;
+m = 0.511e6;
+e = 3.795;
+rmin = -10;
+rmax = 10;
+n = 1000;
+k = 1;
+
+r = linspace(rmin, rmax, n);
+d = r(2) - r(1);
+
+V = zeros(n, n);
+for i = 1:n
+    V(i, i) = 0.5 * k * r(i)^2;
+end
+
+K = -2 * eye(n, n);
+for i = 1:n - 1
+    K(i, i + 1) = 1;
+    K(i + 1, i) = 1;
+end
+
+H = -((h^2) / (2 * m * d^2)) * K + V;
+
+[U, EV] = spec(H);
+E = diag(EV);
+
+disp("Eigen Value of Ground state", string(E(1)) + "eV")
+disp("Eigen Value of First state", string(E(2)) + "eV")
+disp("Eigen Value of Second state", string(E(3)) + "eV")
+disp("Eigen Value of Third state", string(E(4)) + "eV")
+
+clf
+format(6)
+
+subplot(2,1,1)
+z = 0.2;
+plot(r', [U(:,1) + z, U(:,2) + 2*z, U(:,3) + 3*z, U(:,4) + 4*z], -8, -1, 8, 1, 1);
+legend("Ground State", "First State", "Second State", "Third State");
+title('Wavefunction Plot');
+xlabel('r (A)');
+ylabel('psi');
+
+subplot(2,1,2)
+rmin = -8;
+rmax = 8;
+n = 1000;
+r = linspace(rmin, rmax, n);
+
+plot(r, 0.5 * k * r.^2 / 15, '--k');
+legend("Potential");
+title('Potential Energy Plot');
+xlabel('r (A)');
+ylabel('V(r)');
