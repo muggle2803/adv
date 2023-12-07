@@ -1,0 +1,30 @@
+clear;
+clf;
+h = 1973; m = 0.511e6; e = 3.795
+a=2;
+n=1000;V0=-20
+r=linspace(-a,a,n)
+d=r(2)-r(1)
+t=-(h^2)/(2*m*d^2)
+V=zeros(n,n)
+K=-2*eye(n,n)
+for i = 2:n
+    K(i,i-1) = 1
+    K(i-1,i) = 1
+end
+H = (-(h^2)/(2*m*d^2))*K+V; // Hamiltonian matrix
+[U,EV] = spec(H)
+E = diag(EV); // Eigenvalues
+format(6)
+for i=1:2
+    disp(string(i-1)+" state energy: " + string(E(i))+"eV")
+    subplot(1,2,i)
+    plot2d(r',((U(:,i))),5)
+    a=gca()
+    a.x_location="origin"
+    a.y_location="origin"
+    xlabel('r')
+    ylabel('Ψ')
+    xgrid(3)
+    legend('WAVE FUNCTION OF Ψ'+string(i-1),-1)
+end
