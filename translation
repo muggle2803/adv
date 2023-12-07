@@ -1,0 +1,14 @@
+//Translation
+clear;clc
+p=[-2;2;4;-2]
+q=[1;4;2;1]
+t=[2 3]
+V=[p q]
+for i=1:4
+    c(i,:)=V(i,:)+t
+end
+X=(c(:,1))'
+Y=(c(:,2))'
+subplot(2,2,1)
+plot2d(p,q,2)
+plot2d(X,Y,3)
