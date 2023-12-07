@@ -1,0 +1,20 @@
+clear();clc;clf
+x=[1 6]
+y=[2 -4]
+rmin=1
+rmax=6
+n=100
+r=linspace(rmin,rmax,n)
+t=zeros(1,n)
+for i=1:n
+    t(i)=sqrt((r(i)-x(1))^2+y(1)^2)+sqrt((r(i)-x(2))^2+y(2)^2)
+end
+[p,q]=min(t)
+disp("t="+string(p))
+disp("x="+string(r(q)))
+plot2d(r,t)
+xlabel("r")
+ylabel("t")
+sini=(r(q)-x(1))/(sqrt(y(1)^2+(r(q)-x(1))^2))
+sinr=(x(2)-r(q))/(sqrt(y(2)^2+((r(i)-x(1))^2)))
+disp("sini/sinr="+string(sini/sinr))
